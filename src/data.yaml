@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=./data.schema.json
 basics:
   name: Thomas Decaux
   label: Tech Lead Platform Engineer
@@ -9,6 +10,7 @@ basics:
     Across every project I bring the same four dimensions: follow-up, automation,
     documentation and training — turning infrastructure into a product that developer
     and data teams actually want to use.
+    I use AI every day to do my job better, faster and more securely.
   location:
     city: Sanary-sur-Mer
     country: France
@@ -30,9 +32,11 @@ work:
     location: Ollioules, France
     startDate: 2024-11
     highlights:
-      - Lead a team of 10 engineers operating the group's on-premise Kubernetes platform.
+      - Lead a team of 10 engineers operating the group's on-premise software factory platform.
       - Own architecture and roadmap for a sovereign, air-gapped-friendly container platform.
       - Make "deploy anything on Kubernetes" a self-service reality for internal product teams.
+      - Deploy Catia Magic on Kubernetes and license servers
+      - Accelerate the adoption of GitOps and CI/CD practices across the organization.
 
   - name: PetalMD
     position: Platform Engineer
@@ -140,9 +144,11 @@ projects:
     description: Open-source organisation.
   - name: Stack Overflow
     url: https://stackoverflow.com/u/447344
-    description: 22k reputation.
+    description: 23k reputation.
 
 skills:
+  - name: AI
+    keywords: [Claude, TDD, mattpocock & superpowers workflows, skills creation, loop, workflows]
   - name: Platform & Orchestration
     keywords: [Kubernetes, Docker, Helm, ArgoCD, Argo Workflows, Terraform, Ansible, GitOps]
   - name: Cloud & CI/CD
@@ -165,3 +171,82 @@ education:
 languages:
   - language: French
   - language: English
+
+# Home page only. Experience, skills and contact details are read from the keys above.
+site:
+  meta:
+    title: Thomas Decaux - Tech Lead Platform Engineer
+    description: Tech Lead Platform Engineer with 17+ years building and running high-volume infrastructure, from on-prem Kubernetes to multi-cluster cloud.
+
+  nav:
+    - { label: Experience, href: "#experience" }
+    - { label: Skills, href: "#skills" }
+    - { label: Open Source, href: "#open-source" }
+    - { label: Contact, href: "#contact" }
+
+  hero:
+    leads:
+      - Platform engineer with 17+ years building and running high-volume infrastructure, from on-prem Kubernetes to multi-cluster cloud and terabyte-scale data lakes.
+      - Across every project I bring the same four dimensions, follow-up, automation, documentation and training, turning infrastructure into a product that developer and data teams actually want to use 🚀.
+      - I use AI every day to do my job better, faster and more securely.
+      - "And my most important task: being on call for my two kids and my dog 😄"
+    signals:
+      - Kubernetes platforms
+      - AI advocate
+      - DevOps culture
+      - GitOps & CI/CD
+      - Observability & monitoring
+      - Data platforms
+    stats:
+      - { value: 17+, label: years in production engineering }
+      - { value: "10", label: engineers led as tech lead }
+      - { value: 12+, label: open-source projects contributed to }
+      - { value: 23k, label: Stack Overflow reputation }
+
+  experience:
+    limit: 6
+
+  # Site-only decoration, keyed by the names used above. The CV stays plain text for ATS parsers.
+  companyLogos:
+    Naval Group: logos/naval-group.svg
+    PetalMD: logos/petalmd.png
+    Qwant: logos/qwant.png
+
+  skillEmojis:
+    AI: 🤖
+    Platform & Orchestration: 🚢
+    Cloud & CI/CD: ☁️
+    Data: 📊
+    Observability: 🔭
+    Programming: 💻
+    Ways of Working: 🤝
+
+  openSource:
+    - title: Upstream contributions
+      columns: 2
+      items:
+        - { name: Elasticsearch }
+        - { name: ArgoCD }
+        - { name: Grafana }
+        - { name: Prek }
+        - { name: Trivy }
+    - title: Community
+      items:
+        - { name: datatok, url: "https://github.com/datatok", text: open-source organisation }
+        - { name: Stack Overflow, url: "https://stackoverflow.com/u/447344", text: 23k reputation }
+        - { name: Medium, url: "https://thomasdecaux.medium.com" }
+    - title: My last projects
+      items:
+        - { name: sub-strike, url: "https://github.com/ebuildy/sub-strike", text: "Game / Naval warfare, deep under." }
+        - { name: vitrine, url: "https://github.com/ebuildy/vitrine", text: "Look, don’t touch: a public showcase of internal GitLab, Harbor and Nexus content." }
+        - { name: docusaurus-plugin-gitlab, url: "https://github.com/ebuildy/docusaurus-plugin-gitlab", text: "Embed GitLab resources — project info, README, releases, issues, and any file/code snippet — in your Docusaurus 3 docs at build time." }
+        - { name: pupitre2, url: "https://github.com/ebuildy/pupitre2", text: "Better pupitre, front & back on typescript" }
+        - { name: mise-distrobox, url: "https://github.com/ebuildy/mise-distrobox", text: "Mise plugin to install tools from a distrobox" }
+        - { name: keco, url: "https://github.com/ebuildy/keco", text: "The Kubernetes Ecosystem search engine, find the right Kubernetes tool in 10 seconds, not 10 browser tabs." }
+        - { name: cigar, url: "https://github.com/ebuildy/cigar", text: "A GitLab bot that tells you how much CPU & memory your CI jobs really burned — and when they got throttled." }
+        - { name: kubectl-notify, url: "https://github.com/ebuildy/kubectl-notify", text: "Notification blazing fast for Kubernetes, FluxCD, ArgoCD events" }
+        - { name: kubectl-sql, url: "https://github.com/ebuildy/kubectl-sql", text: "Kubernetes plugin to query resources with SQL" }
+        - { name: kubectl-plugin-kopi, url: "https://github.com/ebuildy/kubectl-plugin-kopi", text: "Let you copy secret or configMap data to clipboard. No more json base64decode fancy stuff." }
+
+  contact:
+    text: The fastest way to reach me is by email or LinkedIn.

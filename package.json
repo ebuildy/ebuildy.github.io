@@ -2,9 +2,6 @@
   "name": "cv",
   "private": true,
   "type": "module",
-  "scripts": {
-    "build": "node scripts/build.mjs"
-  },
   "devDependencies": {
     "ajv": "^8.20.0",
     "nunjucks": "^3.2.4",

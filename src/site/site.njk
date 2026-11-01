@@ -58,7 +58,7 @@
         {% for job in jobs %}
         <article class="card">
           <div class="card-heading">
-            <h3>{{ job.position }}, {{ job.name }}</h3>
+            <h3>{% if site.companyLogos[job.name] %}<img class="company-logo" src="{{ site.companyLogos[job.name] }}" alt="" width="32" height="32">{% endif %}{{ job.position }}, {{ job.name }}</h3>
             <span>{{ job.location }} | {{ job.startDate | date }} - {{ (job.endDate | date) if job.endDate else "Present" }}</span>
           </div>
           {% if job.summary %}<p class="muted">{{ job.summary | trim }}</p>{% endif %}
@@ -85,7 +85,7 @@
         <h2>Technical skills</h2>
         <dl class="card skills">
           {% for skill in cv.skills %}<div>
-            <dt>{{ skill.name }}</dt>
+            <dt>{% if site.skillEmojis[skill.name] %}<span class="emoji" aria-hidden="true">{{ site.skillEmojis[skill.name] }}</span>{% endif %}{{ skill.name }}</dt>
             <dd>{{ skill.keywords | join(", ") }}</dd>
           </div>
           {% endfor %}
@@ -100,8 +100,8 @@
           {% for group in site.openSource %}
           <div class="card">
             <h3>{{ group.title }}</h3>
-            <ul class="bullets">
-              {% for item in group.items %}<li><a href="{{ item.url }}">{{ item.name }}</a>{% if item.text %}: {{ item.text }}{% endif %}</li>
+            <ul class="bullets{% if group.columns == 2 %} two-columns{% endif %}">
+              {% for item in group.items %}<li>{% if item.url %}<a href="{{ item.url }}">{{ item.name }}</a>{% else %}{{ item.name }}{% endif %}{% if item.text %}: {{ item.text }}{% endif %}</li>
               {% endfor %}
             </ul>
           </div>

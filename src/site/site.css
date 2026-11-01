@@ -84,11 +84,14 @@ h2 { font-size: 1.875rem; font-weight: 700; letter-spacing: -.01em; }
 
 .card { margin-top: 24px; padding: 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: 0 1px 2px rgb(15 23 42 / .05); }
 .card h3 { font-size: 1.2rem; font-weight: 600; }
-.card-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; }
+.card-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 16px; }
+.card-heading h3 { display: flex; align-items: center; gap: 12px; }
 .card-heading span, .muted { color: var(--muted); font-size: .9rem; }
+.company-logo { flex: none; border-radius: 6px; object-fit: contain; }
 .bullets { margin-top: 16px; padding-left: 20px; list-style: disc; }
 .bullets li { margin-top: 8px; }
 .bullets li::marker { color: var(--brand-soft); }
+.two-columns { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; }
 .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
 .badges li { padding: 2px 10px; border-radius: 999px; background: var(--badge); color: var(--brand); font-size: .8rem; font-weight: 500; }
 .more { margin-top: 32px; text-align: center; }
@@ -97,9 +100,11 @@ h2 { font-size: 1.875rem; font-weight: 700; letter-spacing: -.01em; }
 .skills div { display: grid; grid-template-columns: 14rem 1fr; gap: 24px; padding: 16px 24px; border-top: 1px solid var(--line); }
 .skills div:first-child { border-top: 0; }
 .skills dt { font-weight: 600; }
+.emoji { margin-right: 8px; }
 .skills dd { color: #475569; }
 
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid .card:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .contact .muted { margin-top: 8px; font-size: 1rem; }
 .contact .hero-actions { margin-top: 24px; }
 .links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 24px; overflow-wrap: anywhere; }
@@ -114,6 +119,7 @@ h2 { font-size: 1.875rem; font-weight: 700; letter-spacing: -.01em; }
 }
 @media (max-width: 600px) {
   .card { padding: 20px; }
+  .two-columns { grid-template-columns: 1fr; }
   .skills { padding: 0; }
   .skills div { grid-template-columns: 1fr; gap: 2px; padding: 14px 20px; }
 }

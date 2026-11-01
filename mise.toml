@@ -1,0 +1,30 @@
+[tools]
+node = "24"
+watchexec = "2"
+miniserve = "0"
+
+[tasks.install]
+description = "Install npm dependencies and Chromium"
+run = ["npm ci", "npx playwright install --with-deps chromium"]
+
+[tasks.build]
+description = "Render the home page, the CV and the PDF into dist/"
+run = "node scripts/build.mjs"
+
+[tasks.check]
+description = "Build, then run the ATS checks on the PDF"
+depends = ["build"]
+run = "node scripts/check.mjs"
+
+[tasks.dev]
+description = "Serve dist/ and rebuild when sources change"
+depends = ["dev:serve", "dev:watch"]
+
+[tasks."dev:serve"]
+hide = true
+depends = ["build"]
+run = "miniserve dist --index index.html --port 8080"
+
+[tasks."dev:watch"]
+hide = true
+run = "watchexec --watch src --watch scripts --postpone -- node scripts/build.mjs"
