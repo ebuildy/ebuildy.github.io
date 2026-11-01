@@ -1,5 +1,6 @@
-// Usage: node scripts/build.mjs [input=cv.yaml] [outDir=dist]
-// Validates the YAML, renders HTML, prints the PDF, then runs the ATS checks.
+// Usage: node scripts/build.mjs [cvYaml outDir]
+// Validates the YAML, renders the CV page, prints the PDF and runs the ATS checks.
+// Without arguments it also renders the home page. With them, it builds only that CV.
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import Ajv from "ajv";
@@ -12,24 +13,25 @@ const MAX_PAGES = 2;
 const SECTIONS = ["Summary", "Experience", "Skills", "Education"];
 const MONTHS = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" ");
 
-const [input = "cv.yaml", outDir = "dist"] = process.argv.slice(2);
+const [input = "src/cv/cv.yaml", outDir = "dist"] = process.argv.slice(2);
+const withSite = process.argv.length <= 2;
 
 function fail(title, problems) {
   console.error(`✗ ${title}\n${problems.map((p) => `  - ${p}`).join("\n")}`);
   process.exit(1);
 }
 
-function loadCv() {
-  const cv = parse(readFileSync(input, "utf8"));
-  const schema = JSON.parse(readFileSync("cv.schema.json", "utf8"));
+function loadYaml(path, schemaPath) {
+  const data = parse(readFileSync(path, "utf8"));
+  const schema = JSON.parse(readFileSync(schemaPath, "utf8"));
   const validate = new Ajv({ allErrors: true }).compile(schema);
-  if (!validate(cv)) {
+  if (!validate(data)) {
     fail(
-      `${input} does not match cv.schema.json`,
+      `${path} does not match ${schemaPath}`,
       validate.errors.map((e) => `${e.instancePath || "/"} ${e.message} ${JSON.stringify(e.params)}`),
     );
   }
-  return cv;
+  return data;
 }
 
 function formatDate(date) {
@@ -39,11 +41,11 @@ function formatDate(date) {
 
 const displayUrl = (url) => url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
 
-function renderHtml(cv, pdfName) {
-  const env = nunjucks.configure("templates", { autoescape: true });
+function render(name, context) {
+  const env = nunjucks.configure("src", { autoescape: true });
   env.addFilter("date", formatDate);
   env.addFilter("displayUrl", displayUrl);
-  return env.render("cv.njk", { cv, pdfName, css: readFileSync("templates/cv.css", "utf8") });
+  return env.render(`${name}/${name}.njk`, { ...context, css: readFileSync(`src/${name}/${name}.css`, "utf8") });
 }
 
 async function printPdf(htmlPath, pdfPath) {
@@ -97,19 +99,25 @@ function checkAts(cv, pdf) {
   return problems;
 }
 
-const cv = loadCv();
-const pdfName = `${cv.basics.name.replace(/\s+/g, "-")}-CV.pdf`;
-const htmlPath = join(outDir, "index.html");
-const pdfPath = join(outDir, pdfName);
+const cv = loadYaml(input, "src/cv/cv.schema.json");
+const htmlPath = join(outDir, "cv", "index.html");
+const pdfPath = join(outDir, "cv.pdf");
 
-mkdirSync(outDir, { recursive: true });
-writeFileSync(htmlPath, renderHtml(cv, pdfName));
+mkdirSync(join(outDir, "cv"), { recursive: true });
+writeFileSync(htmlPath, render("cv", { cv }));
 await printPdf(htmlPath, pdfPath);
 
 const pdf = await readPdf(pdfPath);
-writeFileSync(join(outDir, "extracted.txt"), pdf.text);
+writeFileSync(`${outDir}.extracted.txt`, pdf.text);
 
 const problems = checkAts(cv, pdf);
 if (problems.length) fail("ATS checks failed", problems);
+
+if (withSite) {
+  const site = loadYaml("src/site/site.yaml", "src/site/site.schema.json");
+  const jobs = cv.work.slice(0, site.experience.limit);
+  writeFileSync(join(outDir, "index.html"), render("site", { cv, site, jobs }));
+  copyFileSync("src/site/photo.jpg", join(outDir, "photo.jpg"));
+}
 
 console.log(`✓ ${pdfPath} (${pdf.pages} page(s)), ATS checks passed`);

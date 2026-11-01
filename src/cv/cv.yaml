@@ -1,10 +1,10 @@
 basics:
   name: Thomas Decaux
-  label: Senior Platform Engineer
+  label: Tech Lead Platform Engineer
   email: ebuildy@gmail.com
   summary: >-
     Platform engineer with 17+ years building and running high-volume infrastructure,
-    from on-prem Kubernetes to multi-cluster cloud and petabyte-adjacent data lakes.
+    from on-prem Kubernetes to multi-cluster cloud and terabyte-scale data lakes.
     Inventive, curious and passionate about the web, automation and data mashup.
     Across every project I bring the same four dimensions: follow-up, automation,
     documentation and training — turning infrastructure into a product that developer
@@ -129,7 +129,8 @@ work:
     location: London, United Kingdom
     startDate: 2009-03
     endDate: 2010-03
-    highlights: []
+    highlights:
+      - Lived and worked for one year in London as a front-end developer.
 
 projects:
   - name: Open-source contributions
