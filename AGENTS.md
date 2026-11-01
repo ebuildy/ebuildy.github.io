@@ -4,8 +4,6 @@ Personal site with an English ATS-friendly CV. `src/data.yaml` is the single sou
 
 Tools and tasks live in `mise.toml`. Setup: `mise run install`. Preview: `mise run dev`.
 
-Links between pages stay relative, because the site is served under a `/cv/` base path.
-
 ## Truthfulness
 
 Every fact traces back to the source PDF or to something the user told you. When a metric, date, or technology is missing, ask the user and leave it out until they answer.
