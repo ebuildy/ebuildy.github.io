@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ cv.basics.name }} - {{ cv.basics.label }}</title>
+  <meta name="author" content="{{ cv.basics.name }}">
+  <meta name="description" content="{{ cv.basics.summary | trim }}">
+  <style>{{ css | safe }}</style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>{{ cv.basics.name }}</h1>
+      <p class="label">{{ cv.basics.label }}</p>
+      <p class="contact">
+        {{ cv.basics.location.city }}, {{ cv.basics.location.country }}
+        | <a href="mailto:{{ cv.basics.email }}">{{ cv.basics.email }}</a>
+        {%- if cv.basics.url %} | <a href="{{ cv.basics.url }}">{{ cv.basics.url | displayUrl }}</a>{% endif %}
+        {%- for profile in cv.basics.profiles %} | <a href="{{ profile.url }}">{{ profile.url | displayUrl }}</a>{% endfor %}
+      </p>
+      <p class="download"><a href="{{ pdfName }}">Download PDF</a></p>
+    </header>
+
+    <section>
+      <h2>Summary</h2>
+      <p>{{ cv.basics.summary | trim }}</p>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      {% for job in cv.work %}
+      <article>
+        <h3>{{ job.position }}, {{ job.name }}</h3>
+        <p class="meta">{{ job.startDate | date }} - {{ (job.endDate | date) if job.endDate else "Present" }}{% if job.location %} | {{ job.location }}{% endif %}</p>
+        {% if job.summary %}<p>{{ job.summary | trim }}</p>{% endif %}
+        {% if job.highlights.length %}
+        <ul>
+          {% for highlight in job.highlights %}<li>{{ highlight | trim }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {% if job.stack %}<p><strong>Stack:</strong> {{ job.stack | join(", ") }}</p>{% endif %}
+      </article>
+      {% endfor %}
+    </section>
+
+    {% if cv.projects %}
+    <section>
+      <h2>Projects</h2>
+      <ul>
+        {% for project in cv.projects %}<li><strong>{{ project.name }}</strong>: {{ project.description | trim }}{% if project.url %} (<a href="{{ project.url }}">{{ project.url | displayUrl }}</a>){% endif %}</li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    <section>
+      <h2>Skills</h2>
+      <ul>
+        {% for skill in cv.skills %}<li><strong>{{ skill.name }}:</strong> {{ skill.keywords | join(", ") }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      {% for school in cv.education %}
+      <article>
+        <h3>{{ school.studyType }}, {{ school.area }}</h3>
+        <p class="meta">{{ school.institution }}{% if school.endDate %} | {% if school.startDate %}{{ school.startDate | date }} - {% endif %}{{ school.endDate | date }}{% endif %}</p>
+      </article>
+      {% endfor %}
+    </section>
+
+    {% if cv.certificates %}
+    <section>
+      <h2>Certifications</h2>
+      <ul>
+        {% for cert in cv.certificates %}<li>{{ cert.name }}, {{ cert.issuer }}{% if cert.date %} ({{ cert.date | date }}){% endif %}</li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    {% if cv.languages %}
+    <section>
+      <h2>Languages</h2>
+      <p>{% for lang in cv.languages %}{{ lang.language }}{% if lang.fluency %} ({{ lang.fluency }}){% endif %}{% if not loop.last %}, {% endif %}{% endfor %}</p>
+    </section>
+    {% endif %}
+  </main>
+</body>
+</html>

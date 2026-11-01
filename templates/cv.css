@@ -1,0 +1,52 @@
+:root {
+  color-scheme: light dark;
+  --text: #1a1a1a;
+  --muted: #555;
+  --line: #bbb;
+  --link: #0b57d0;
+  --bg: #fff;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #e8e8e8;
+    --muted: #a8a8a8;
+    --line: #555;
+    --link: #8ab4f8;
+    --bg: #161616;
+  }
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.5 Arial, Helvetica, "Liberation Sans", sans-serif;
+  /* Ligatures extract as a single glyph and break ATS keyword matching. */
+  font-variant-ligatures: none;
+}
+main { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+h1 { margin: 0; font-size: 2em; line-height: 1.2; }
+h2 { margin: 1.4em 0 .4em; padding-bottom: .15em; border-bottom: 1px solid var(--line); font-size: 1.15em; }
+h3 { margin: .8em 0 0; font-size: 1em; }
+p, ul { margin: .3em 0; }
+ul { padding-left: 1.2em; }
+a { color: var(--link); }
+.label { font-size: 1.1em; }
+.meta, .contact { color: var(--muted); }
+.contact { overflow-wrap: anywhere; }
+
+@page { size: A4; margin: 11mm 13mm; }
+@media print {
+  :root { --text: #000; --muted: #333; --line: #888; --link: #000; --bg: #fff; }
+  body { font-size: 9.5pt; line-height: 1.25; }
+  main { max-width: none; padding: 0; }
+  h1 { font-size: 1.7em; }
+  h2 { margin: .7em 0 .2em; font-size: 1.1em; }
+  h3 { margin: .45em 0 0; }
+  p, ul { margin: .1em 0; }
+  a { text-decoration: none; }
+  .download { display: none; }
+  h2, h3 { break-after: avoid; }
+  li { break-inside: avoid; }
+}

@@ -1,0 +1,166 @@
+basics:
+  name: Thomas Decaux
+  label: Senior Platform Engineer
+  email: ebuildy@gmail.com
+  summary: >-
+    Platform engineer with 17+ years building and running high-volume infrastructure,
+    from on-prem Kubernetes to multi-cluster cloud and petabyte-adjacent data lakes.
+    Inventive, curious and passionate about the web, automation and data mashup.
+    Across every project I bring the same four dimensions: follow-up, automation,
+    documentation and training — turning infrastructure into a product that developer
+    and data teams actually want to use.
+  location:
+    city: Sanary-sur-Mer
+    country: France
+  profiles:
+    - network: LinkedIn
+      url: https://www.linkedin.com/in/thomas-decaux-80b35690
+    - network: GitHub
+      url: https://github.com/ebuildy
+    - network: GitHub
+      url: https://github.com/datatok
+    - network: Stack Overflow
+      url: https://stackoverflow.com/u/447344
+    - network: Medium
+      url: https://thomasdecaux.medium.com
+
+work:
+  - name: Naval Group
+    position: Tech Lead — Cloud Platform
+    location: Ollioules, France
+    startDate: 2024-11
+    highlights:
+      - Lead a team of 10 engineers operating the group's on-premise Kubernetes platform.
+      - Own architecture and roadmap for a sovereign, air-gapped-friendly container platform.
+      - Make "deploy anything on Kubernetes" a self-service reality for internal product teams.
+
+  - name: PetalMD
+    position: Platform Engineer
+    location: Montréal, Canada
+    startDate: 2023-01
+    endDate: 2024-11
+    highlights:
+      - "Led the platform team: defined platform features, priorities and roadmap."
+      - Built the full infrastructure as code in Terraform on Azure, across multiple AKS clusters.
+      - Delivered a developer platform end to end — GitLab CI pipelines, ArgoCD deployments, ingress and TLS with Traefik + cert-manager, secrets with Vault + external-secrets.
+      - Stood up the data platform on Kafka and Kafka Connect, and supported dev teams on adoption.
+    stack: [Azure, AKS, Terraform, GitLab CI, ArgoCD, Vault, Traefik, cert-manager, Kafka]
+
+  - name: Qwant
+    position: DevOps Engineer — Kubernetes
+    location: Nice, France
+    startDate: 2020-11
+    endDate: 2022-12
+    summary: Privacy-first European search engine.
+    highlights:
+      - Drove the infrastructure team's migration to Kubernetes, from architecture to production.
+      - Defined the GitOps deployment model (ArgoCD) and the security baseline — network policies, security contexts, hardened images with Trivy.
+      - Ran CI/CD on Argo Workflows; packaged applications with Helm and Docker.
+      - Contributed upstream to the official Elastic Helm charts.
+    stack: [Kubernetes, ArgoCD, Argo Workflows, Helm, Trivy, Prometheus, Grafana, AlertManager, Ansible, Terraform, Python]
+
+  - name: Qwant
+    position: Data Engineer — Analytics Owner
+    location: Nice, France
+    startDate: 2015-07
+    endDate: 2020-12
+    summary: Owned the whole analytics service; as a privacy-first search engine, the entire stack ran on-premise.
+    highlights:
+      - Designed and built the data lake from scratch — hot and cold tiers, architecture through operations.
+      - 10 TB cold lake on HDFS + Apache Spark; real-time pipeline on RabbitMQ + Logstash.
+      - Built data marts for business analytics, plus dozens of SQL queries, dashboards and notebooks (Zeppelin, Jupyter).
+      - Owned maintenance, upgrades and evolution of the platform; managed two data analysts.
+      - Worked with business and marketing teams on company strategy.
+    stack: [Spark (Python/Java), HDFS, YARN, Ambari, Elasticsearch, Logstash, Kibana, Elastic APM, Metricbeat, Kubernetes, GitLab CI, ArgoCD, Analytic SQL]
+
+  - name: Qwant
+    position: Site Reliability Engineer
+    location: Nice, France
+    startDate: 2019-07
+    endDate: 2020-07
+    summary: Embedded in the infra team, serving 3 business teams — 28 developers across 4 languages.
+    highlights:
+      - Set up centralised monitoring, logging and alerting; centralised collection of application errors.
+      - Defined and tracked performance KPIs, and correlated technical signals with business data (e.g. response-time impact on revenue).
+      - Built KPI-based alerting routed to the right team, and defined root-cause analysis procedures.
+      - Monitored performance and availability of the Qwant website.
+    stack: [Elasticsearch, Kibana, Elastic APM, Grafana, Prometheus, AlertManager, "AWS (SQS, EC2, S3)"]
+
+  - name: Qwant
+    position: Security Engineer — Abuse Detection
+    location: Nice, France
+    startDate: 2017-11
+    endDate: 2018-11
+    highlights:
+      - Designed a bot-detection system based on user-behaviour analysis (search, interaction, click patterns).
+      - Built spam-campaign detection to spot coordinated search patterns across multiple IPs.
+    stack: [Kafka, Spark Streaming, Elasticsearch, Kibana, Python]
+
+  - name: Qwant
+    position: Developer & DevOps
+    location: Nice, France
+    startDate: 2012-02
+    endDate: 2015-11
+    highlights:
+      - Invented and built the demo that launched the Qwant adventure — a social ranking of web results on top of the Bing API.
+      - "Web development (PHP, Memcached, CSS, JS) and infrastructure architecture: reverse HTTP proxies, php-fpm pools, Zabbix monitoring."
+      - Ran multiple AWS proofs of concept for web crawling (EC2, SQS, S3, Redshift).
+
+  - name: DNXCorp
+    position: PHP Developer
+    location: Marseille, France
+    startDate: 2011-01
+    endDate: 2012-01
+    highlights:
+      - Built dating applications (PHP / MySQL) for a European online-entertainment operator.
+      - Migrated the in-house CRM onto the Symfony 2 framework.
+      - Partnered with the business team on click-through rate and revenue optimisation.
+
+  - name: ebuildy
+    position: Founder
+    location: Sanary-sur-Mer, France
+    startDate: 2010-04
+    endDate: 2011-01
+    highlights:
+      - "First startup: a SaaS in-house CRM and PrestaShop web hosting offer, built and operated solo."
+
+  - name: Affino
+    position: Front-end Developer
+    location: London, United Kingdom
+    startDate: 2009-03
+    endDate: 2010-03
+    highlights: []
+
+projects:
+  - name: Open-source contributions
+    description: 12+ open-source projects contributed to, including ArgoCD, Grafana and the official Elastic Helm charts.
+  - name: datatok
+    url: https://github.com/datatok
+    description: Open-source organisation.
+  - name: Stack Overflow
+    url: https://stackoverflow.com/u/447344
+    description: 22k reputation.
+
+skills:
+  - name: Platform & Orchestration
+    keywords: [Kubernetes, Docker, Helm, ArgoCD, Argo Workflows, Terraform, Ansible, GitOps]
+  - name: Cloud & CI/CD
+    keywords: [Azure / AKS, AWS, On-prem, GitLab CI, GitHub, Vault, cert-manager, Traefik, Trivy]
+  - name: Data
+    keywords: [Apache Spark, Kafka, Hadoop / HDFS, Elastic Stack, Analytic SQL, Logstash]
+  - name: Observability
+    keywords: [Prometheus, Grafana, Kibana, Elastic APM, AlertManager, Zeppelin]
+  - name: Programming
+    keywords: [Python, Java, JavaScript, TypeScript, React, SQL, PHP, Bash]
+  - name: Ways of Working
+    keywords: [Follow-up & measurement, Automation first, Documentation as a deliverable, Spreading the culture, Training & mentoring]
+
+education:
+  - institution: ISEN, Toulon, France
+    studyType: Engineering degree
+    area: Computer Science
+    endDate: "2008"
+
+languages:
+  - language: French
+  - language: English
